@@ -92,7 +92,7 @@ public abstract class AbsTabIndicateView extends LinearLayout implements View.On
 	 *            前显示TAB位置
 	 */
 	public void setCurrentTab(int position) {
-		this.setCurrentTab(position, true);
+		this.setCurrentTab(position, true);//默认需要通知接口返回位置
 	}
 
 	/**
