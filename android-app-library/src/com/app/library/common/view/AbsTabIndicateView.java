@@ -184,7 +184,6 @@ class TabIndicateHandler extends Handler {
 
 	public TabIndicateHandler(AbsTabIndicateView absTabIndicateView) {
 		this.absTabIndicateView = absTabIndicateView;
-
 	}
 
 	@Override

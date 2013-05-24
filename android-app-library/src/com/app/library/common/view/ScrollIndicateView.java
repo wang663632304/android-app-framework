@@ -359,7 +359,7 @@ public class ScrollIndicateView extends RelativeLayout {
 	/**
 	 * 刷新提示器
 	 */
-	synchronized void refreshIndicateView() {
+	void refreshIndicateView() {
 		this.refreshTime = System.currentTimeMillis();
 
 		for (int index = 0; index < totelCount; index++) {
