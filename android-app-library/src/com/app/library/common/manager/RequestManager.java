@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.security.MessageDigest;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
