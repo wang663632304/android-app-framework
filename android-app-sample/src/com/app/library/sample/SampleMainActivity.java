@@ -9,7 +9,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.app.library.common.BaseActivity;
+import com.app.library.common.StringUtils;
 import com.app.library.common.manager.DialogManager;
+import com.app.library.common.manager.RequestListener;
+import com.app.library.common.manager.RequestManager;
 
 /**
  * library中控件及工具使用示例
@@ -17,7 +21,7 @@ import com.app.library.common.manager.DialogManager;
  * @author savant-pan
  * 
  */
-public class SampleMainActivity extends Activity implements OnClickListener {
+public class SampleMainActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,7 @@ public class SampleMainActivity extends Activity implements OnClickListener {
 		findViewById(R.id.button2).setOnClickListener(this);
 		findViewById(R.id.button3).setOnClickListener(this);
 		findViewById(R.id.button4).setOnClickListener(this);
+		findViewById(R.id.button5).setOnClickListener(this);
 	}
 
 	@Override
@@ -41,9 +46,32 @@ public class SampleMainActivity extends Activity implements OnClickListener {
 			startActivity(new Intent(this, ScrollIndicateActivity.class));
 		} else if (resId == R.id.button4) {
 			startActivity(new Intent(this, AutoScrollIndicateActivity.class));
+		} else if (resId == R.id.button5) {
+			requestHttp();
 		} else {
 			// add if any
 		}
+	}
+
+	private void requestHttp() {
+		final RequestListener requestListener = new RequestListener() {
+			@Override
+			public void onStart() {
+				showDialog();
+			}
+			
+			@Override
+			public void onCompleted(byte[] data, int statusCode, String description, int actionId) {
+				dismissDialog();
+				if(RequestListener.OK==statusCode&& data!=null) {
+					final String result = StringUtils.bytesToString(data);
+					System.out.println("result:"+result);
+				} else {
+					showToast("http error");
+				}
+			}
+		};
+		RequestManager.getInstance().get(SampleMainActivity.this, "http://hao123.com", requestListener , 0);
 	}
 
 	/**

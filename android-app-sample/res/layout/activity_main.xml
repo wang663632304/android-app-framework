@@ -30,5 +30,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:text="AUTO_SCROLL_INDICATOR" />
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="AUTO_SCROLL_INDICATOR" />
 
 </LinearLayout>
