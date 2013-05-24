@@ -25,10 +25,15 @@ public abstract class AbsTabIndicateView extends LinearLayout implements View.On
 	private LinearLayout tabHost;
 	private List<View> viewList = new Vector<View>();
 
+	/**
+	 * 界面刷新Handler
+	 */
+	private Handler refreshHandler;
 	private int viewCount = 0;
 	private int currentIndex = 0;
 	private OnTabChangeListener onTabChangeListener;
 	private boolean notify = false;
+	
 
 	/**
 	 * 标签切换监听接口
@@ -50,6 +55,7 @@ public abstract class AbsTabIndicateView extends LinearLayout implements View.On
 	private void init() {
 		LayoutInflater.from(getContext()).inflate(ResourceUtils.getLayoutId("app_tab_indicate_abs_layout"), this);
 		this.tabHost = (LinearLayout) findViewById(ResourceUtils.getId("tab_host"));
+		this.refreshHandler = new TabIndicateHandler(AbsTabIndicateView.this);
 	}
 
 	public void setOnTabChangeListener(OnTabChangeListener onTabChangeListener) {
@@ -58,7 +64,7 @@ public abstract class AbsTabIndicateView extends LinearLayout implements View.On
 		}
 		this.onTabChangeListener = onTabChangeListener;
 	}
-	
+
 	protected void setupTabLayout(List<View> list) {
 		if (list == null || list.size() == 0) {
 			throw new NullPointerException();
@@ -92,7 +98,7 @@ public abstract class AbsTabIndicateView extends LinearLayout implements View.On
 	 *            前显示TAB位置
 	 */
 	public void setCurrentTab(int position) {
-		this.setCurrentTab(position, true);//默认需要通知接口返回位置
+		this.setCurrentTab(position, true);// 默认需要通知接口返回位置
 	}
 
 	/**
@@ -142,33 +148,26 @@ public abstract class AbsTabIndicateView extends LinearLayout implements View.On
 	 * 更新条目
 	 */
 	private void refrash() {
-		this.handler.sendEmptyMessage(0);
+		this.refreshHandler.sendEmptyMessage(0);
 	}
 
-	/**
-	 * 界面刷新Handler
-	 */
-	private Handler handler = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			super.handleMessage(msg);
-			for (int index = 0; index < viewCount; index++) {// 切换刷新界面
-				final View view = viewList.get(index);
-				if (index == currentIndex) {
-					refreshItemView(view, true);
-					if (onTabChangeListener != null) {
-						if (!notify) {// use only once
-							notify = true;
-						} else {
-							onTabChangeListener.onTabChanged(index);
-						}
+	void refreshIndicateView() {
+		for (int index = 0; index < viewCount; index++) {// 切换刷新界面
+			final View view = viewList.get(index);
+			if (index == currentIndex) {
+				refreshItemView(view, true);
+				if (onTabChangeListener != null) {
+					if (!notify) {// use only once
+						notify = true;
+					} else {
+						onTabChangeListener.onTabChanged(index);
 					}
-				} else {
-					refreshItemView(view, false);
 				}
+			} else {
+				refreshItemView(view, false);
 			}
 		}
-	};
+	}
 
 	/**
 	 * 更新选中项，重写则自定义
@@ -178,4 +177,21 @@ public abstract class AbsTabIndicateView extends LinearLayout implements View.On
 	 */
 	protected abstract void refreshItemView(View view, boolean isCurrent);
 
+}
+
+class TabIndicateHandler extends Handler {
+	private AbsTabIndicateView absTabIndicateView;
+
+	public TabIndicateHandler(AbsTabIndicateView absTabIndicateView) {
+		this.absTabIndicateView = absTabIndicateView;
+
+	}
+
+	@Override
+	public void handleMessage(Message msg) {
+		super.handleMessage(msg);
+		if (this.absTabIndicateView != null) {
+			this.absTabIndicateView.refreshIndicateView();
+		}
+	}
 }

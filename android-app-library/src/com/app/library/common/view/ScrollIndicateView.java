@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Message;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -51,6 +52,9 @@ public class ScrollIndicateView extends RelativeLayout {
 	 * 页面列表
 	 */
 	private List<View> viewList = new ArrayList<View>();
+
+	private Handler refreshHandler;
+
 	/**
 	 * 滑动位置通知回调监听对象
 	 */
@@ -72,17 +76,17 @@ public class ScrollIndicateView extends RelativeLayout {
 	/**
 	 * 圆形列表+箭头提示器
 	 */
-	public static final int INDICATOR_ARROW_ROUND_STYLE = 0;
+	public static final int INDICATE_ARROW_ROUND_STYLE = 0;
 
 	/**
 	 * 操作导引提示器
 	 */
-	public static final int INDICATOR_USERGUIDE_STYLE = 1;
+	public static final int INDICATE_USERGUIDE_STYLE = 1;
 
 	/**
 	 * INDICATOR样式
 	 */
-	private int indicatorStyle = INDICATOR_ARROW_ROUND_STYLE;
+	private int indicatorStyle = INDICATE_ARROW_ROUND_STYLE;
 
 	/**
 	 * 最近一次划动时间
@@ -131,6 +135,8 @@ public class ScrollIndicateView extends RelativeLayout {
 		final ArrowClickListener arrowClickListener = new ArrowClickListener();
 		this.leftButton.setOnClickListener(arrowClickListener);
 		this.rightButton.setOnClickListener(arrowClickListener);
+
+		this.refreshHandler = new ScrollIndicateHandler(ScrollIndicateView.this);
 	}
 
 	/**
@@ -262,7 +268,7 @@ public class ScrollIndicateView extends RelativeLayout {
 	 * @param style
 	 *            INDICATOR_USERGUIDE_STYLE或INDICATOR_ARROW_ROUND_STYLE
 	 */
-	public void setIndicatorStyle(int style) {
+	public void setIndicateStyle(int style) {
 		this.indicatorStyle = style;
 	}
 
@@ -293,7 +299,7 @@ public class ScrollIndicateView extends RelativeLayout {
 	public void show() {
 		this.totelCount = viewList.size();
 		final LayoutParams params = (LayoutParams) indicateLayout.getLayoutParams();
-		if (INDICATOR_USERGUIDE_STYLE == this.indicatorStyle) {// 操作指引
+		if (INDICATE_USERGUIDE_STYLE == this.indicatorStyle) {// 操作指引
 			params.bottomMargin = 45;
 		}
 		this.indicateLayout.setLayoutParams(params);
@@ -351,18 +357,9 @@ public class ScrollIndicateView extends RelativeLayout {
 	}
 
 	/**
-	 * Refresh Handler
-	 */
-	private Handler refreshHandler = new Handler() {
-		public void handleMessage(android.os.Message msg) {
-			refreshIndicateView();
-		}
-	};
-
-	/**
 	 * 刷新提示器
 	 */
-	private synchronized void refreshIndicateView() {
+	synchronized void refreshIndicateView() {
 		this.refreshTime = System.currentTimeMillis();
 
 		for (int index = 0; index < totelCount; index++) {
@@ -374,7 +371,7 @@ public class ScrollIndicateView extends RelativeLayout {
 			}
 		}
 
-		if (INDICATOR_USERGUIDE_STYLE == this.indicatorStyle) {// 操作指引不显示箭头
+		if (INDICATE_USERGUIDE_STYLE == this.indicatorStyle) {// 操作指引不显示箭头
 			this.leftButton.setVisibility(View.GONE);
 			this.rightButton.setVisibility(View.GONE);
 		} else {// 显示箭头各状态
@@ -465,4 +462,21 @@ public class ScrollIndicateView extends RelativeLayout {
 		}
 	}
 
+}
+
+class ScrollIndicateHandler extends Handler {
+	private ScrollIndicateView scrollIndicateView;
+
+	public ScrollIndicateHandler(ScrollIndicateView scrollIndicateView) {
+		this.scrollIndicateView = scrollIndicateView;
+
+	}
+
+	@Override
+	public void handleMessage(Message msg) {
+		super.handleMessage(msg);
+		if (this.scrollIndicateView != null) {
+			scrollIndicateView.refreshIndicateView();
+		}
+	}
 }
