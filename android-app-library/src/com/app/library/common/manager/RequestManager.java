@@ -25,6 +25,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
+import com.app.library.common.StringUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -166,7 +167,7 @@ public class RequestManager {
 	 * @param actionId
 	 */
 	public void get(Context context, String url, RequestListener requestListener, boolean cache, int actionId) {
-		final String encodeUrl = urlEncode(url);
+		final String encodeUrl = StringUtils.urlEncode(url);
 		if (!cache) {
 			asyncHttpClient.get(context, url, new HttpRequestListener(requestListener, actionId));
 		} else {
@@ -206,7 +207,7 @@ public class RequestManager {
 	 */
 	private void checkUpdate(final Context context, final String url, final int actionId) {
 		final SharedPreferences pref = context.getSharedPreferences("cachefiles", Context.MODE_PRIVATE);
-		final String fileName = encryptMD5(url);
+		final String fileName = StringUtils.encryptMD5(url);
 		new AsyncTask<Void, Void, Long>() {
 			@Override
 			protected Long doInBackground(Void... params) {
@@ -253,7 +254,7 @@ public class RequestManager {
 			@Override
 			protected byte[] doInBackground(Void... params) {
 				try {
-					InputStream is = context.openFileInput(encryptMD5(url));
+					InputStream is = context.openFileInput(StringUtils.encryptMD5(url));
 					ByteArrayOutputStream bos = new ByteArrayOutputStream();
 					byte[] bytes = new byte[4096];
 					int len = 0;
@@ -282,7 +283,7 @@ public class RequestManager {
 	 */
 	private boolean hasCache(Context context, String url) {
 		try {
-			context.openFileInput(encryptMD5(url));
+			context.openFileInput(StringUtils.encryptMD5(url));
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -348,7 +349,7 @@ public class RequestManager {
 		private void saveCache(Context context, String url, byte[] data) {
 			try {
 				ByteArrayInputStream inputStream = new ByteArrayInputStream(data);
-				FileOutputStream os = context.openFileOutput(encryptMD5(url), Context.MODE_PRIVATE);
+				FileOutputStream os = context.openFileOutput(StringUtils.encryptMD5(url), Context.MODE_PRIVATE);
 
 				byte[] buffer = new byte[1024];
 				int len = 0;
@@ -369,7 +370,7 @@ public class RequestManager {
 
 		private void saveLastModified() {
 			context.getSharedPreferences("cachefiles", Context.MODE_PRIVATE).edit()
-					.putLong(encryptMD5(url), lastModified).commit();
+					.putLong(StringUtils.encryptMD5(url), lastModified).commit();
 		}
 	}
 
@@ -424,55 +425,4 @@ public class RequestManager {
 		return false;
 	}
 
-	/**
-	 * 16位MD5
-	 */
-	public static String encryptMD5(String strInput) {
-		return encryptMD532(strInput).substring(8, 24);
-	}
-
-	public static String encryptMD532(String strInput) {
-		StringBuffer buf = null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			md.update(strInput.getBytes("UTF-8"));
-			byte b[] = md.digest();
-			buf = new StringBuffer(b.length * 2);
-			for (int i = 0; i < b.length; i++) {
-				if (((int) b[i] & 0xff) < 0x10) { /* & 0xff转换无符号整型 */
-					buf.append("0");
-				}
-				buf.append(Long.toHexString((int) b[i] & 0xff)); // 转换16进制,下方法同
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return buf.toString();
-	}
-
-	/**
-	 * 网址汉字编码
-	 */
-	public static String urlEncode(String str) {
-		StringBuffer buf = new StringBuffer();
-		byte c;
-		byte[] utfBuf;
-		try {
-			utfBuf = str.getBytes("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			System.out.println("URLEncode: Failed to get UTF-8 bytes from string.");
-			utfBuf = str.getBytes();
-		}
-		for (int i = 0; i < utfBuf.length; i++) {
-			c = utfBuf[i];
-			if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')
-					|| (c == '.' || c == '-' || c == '*' || c == '_')
-					|| (c == ':' || c == '/' || c == '=' || c == '?' || c == '&' || c == '%')) {
-				buf.append((char) c);
-			} else {
-				buf.append("%").append(Integer.toHexString((0x000000FF & c)));
-			}
-		}
-		return buf.toString();
-	}
 }
