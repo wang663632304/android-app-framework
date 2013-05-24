@@ -54,12 +54,12 @@ public class ScrollIndicateView extends RelativeLayout {
 	/**
 	 * 滑动位置通知回调监听对象
 	 */
-	private OnAdvertiseChangeListener onAdvertiseChangeListener;
+	private OnItemChangeListener onItemChangeListener;
 
 	/**
 	 * 单个界面点击回调监听对象
 	 */
-	private OnAdvertiseClickListener onAdvertiseClickListener;
+	private OnItemClickListener onItemClickListener;
 	/**
 	 * 总页面条数
 	 */
@@ -92,14 +92,14 @@ public class ScrollIndicateView extends RelativeLayout {
 	/**
 	 * 广告位置监听接口
 	 */
-	public interface OnAdvertiseChangeListener {
+	public interface OnItemChangeListener {
 		void onPosition(int position, int totalCount);
 	}
 
 	/**
 	 * 条目点击事件监听接口
 	 */
-	public interface OnAdvertiseClickListener {
+	public interface OnItemClickListener {
 		void OnItemClick(View view, int position);
 	}
 
@@ -186,8 +186,8 @@ public class ScrollIndicateView extends RelativeLayout {
 
 		@Override
 		public void onClick(View view) {
-			if (onAdvertiseClickListener != null) {
-				onAdvertiseClickListener.OnItemClick(view, position);
+			if (onItemClickListener != null) {
+				onItemClickListener.OnItemClick(view, position);
 			}
 		}
 	}
@@ -271,11 +271,11 @@ public class ScrollIndicateView extends RelativeLayout {
 	 * 
 	 * @param onGuideListener
 	 */
-	public void setOnAdvertiseChangeListener(OnAdvertiseChangeListener onGuideListener) {
-		if (onGuideListener == null) {
+	public void setOnItemChangeListener(OnItemChangeListener onItemChangeListener) {
+		if (onItemChangeListener == null) {
 			throw new NullPointerException();
 		}
-		this.onAdvertiseChangeListener = onGuideListener;
+		this.onItemChangeListener = onItemChangeListener;
 	}
 
 	/**
@@ -283,8 +283,8 @@ public class ScrollIndicateView extends RelativeLayout {
 	 * 
 	 * @param onItemClickListener
 	 */
-	public void setOnAdvertiseClickListener(OnAdvertiseClickListener onAdvertiseClickListener) {
-		this.onAdvertiseClickListener = onAdvertiseClickListener;
+	public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+		this.onItemClickListener = onItemClickListener;
 	}
 
 	/**
@@ -402,9 +402,9 @@ public class ScrollIndicateView extends RelativeLayout {
 				}
 			}
 		}
-		if (this.onAdvertiseChangeListener != null) {// 页面改更了
+		if (this.onItemChangeListener != null) {// 页面改更了
 			try {
-				this.onAdvertiseChangeListener.onPosition(this.currentIndex, this.totelCount);
+				this.onItemChangeListener.onPosition(this.currentIndex, this.totelCount);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

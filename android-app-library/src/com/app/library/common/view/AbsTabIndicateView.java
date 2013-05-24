@@ -58,7 +58,7 @@ public abstract class AbsTabIndicateView extends LinearLayout implements View.On
 		}
 		this.onTabChangeListener = onTabChangeListener;
 	}
-
+	
 	protected void setupTabLayout(List<View> list) {
 		if (list == null || list.size() == 0) {
 			throw new NullPointerException();

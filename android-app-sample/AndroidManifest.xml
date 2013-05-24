@@ -11,8 +11,8 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        >
+        android:label="@string/app_name" 
+        android:name=".SampleApplication">
         <activity
             android:name="com.app.library.sample.MainActivity"
             android:label="@string/app_name" >
@@ -21,6 +21,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.app.library.sample.TabIndicateActivity" >
+        </activity>
+        <activity android:name="com.app.library.sample.TabViewPagerActivity" >
+        </activity>
+        <activity android:name="com.app.library.sample.ScrollIndicateActivity" >
+        </activity>
+        <activity android:name="com.app.library.sample.AutoScrollIndicateActivity" >
         </activity>
     </application>
 
