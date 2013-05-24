@@ -32,11 +32,37 @@ public class StringUtils {
 
 		return new String(byteStream.toByteArray(), "UTF-8");
 	}
+	
+	/**
+	 * 字节码转JSONObject
+	 * 
+	 * @param data
+	 *            字节码（源为字符）
+	 * @return
+	 */
+	public static JSONArray bytesToJSONArray(byte data[]) {
+		if (data == null)
+			return null;
+		return stringToJSONArray(bytesToString(data));
+	}
+
+	/**
+	 * 字节码转JSONObject
+	 * 
+	 * @param data
+	 *            字节码（源为字符）
+	 * @return
+	 */
+	public static JSONObject bytesToJSONObject(byte data[]) {
+		if (data == null)
+			return null;
+		return stringToJSONObject(bytesToString(data));
+	}
 
 	/**
 	 * 字节码数据 转 字符串工具
 	 */
-	public static String byteToString(byte[] data) {
+	public static String bytesToString(byte[] data) {
 		if (data == null)
 			return null;
 		try {
@@ -80,7 +106,7 @@ public class StringUtils {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * 对字符串进行MD5加密。
 	 */
@@ -128,5 +154,5 @@ public class StringUtils {
 		}
 		return buf.toString();
 	}
-	
+
 }
