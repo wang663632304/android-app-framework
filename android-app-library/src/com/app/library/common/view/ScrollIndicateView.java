@@ -120,8 +120,8 @@ public class ScrollIndicateView extends RelativeLayout {
 		LayoutInflater.from(context).inflate(ResourceUtils.getLayoutId("app_scroll_indicate_layout"), this);
 		this.viewPager = (ViewPager) findViewById(ResourceUtils.getId("view_pager"));
 		this.indicateLayout = (LinearLayout) findViewById(ResourceUtils.getId("indicater_layout"));
-		this.leftButton = (Button) findViewById(ResourceUtils.getId("R.id.left_button"));
-		this.rightButton = (Button) findViewById(ResourceUtils.getId("R.id.right_button"));
+		this.leftButton = (Button) findViewById(ResourceUtils.getId("left_button"));
+		this.rightButton = (Button) findViewById(ResourceUtils.getId("right_button"));
 
 		this.leftButton.setVisibility(View.GONE);
 		this.rightButton.setVisibility(View.GONE);
@@ -368,9 +368,9 @@ public class ScrollIndicateView extends RelativeLayout {
 		for (int index = 0; index < totelCount; index++) {
 			final ImageView imageView = (ImageView) this.indicateLayout.getChildAt(index);
 			if (this.currentIndex == index) {
-				imageView.setBackgroundResource(ResourceUtils.getDrawableId("app_advertise_indicate_focus"));
+				imageView.setBackgroundResource(ResourceUtils.getDrawableId("app_scroll_indicate_focus"));
 			} else {
-				imageView.setBackgroundResource(ResourceUtils.getDrawableId("app_advertise_indicate"));
+				imageView.setBackgroundResource(ResourceUtils.getDrawableId("app_scroll_indicate"));
 			}
 		}
 

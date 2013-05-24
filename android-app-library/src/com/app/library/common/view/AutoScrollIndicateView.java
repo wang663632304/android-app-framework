@@ -79,7 +79,6 @@ public class AutoScrollIndicateView extends ScrollIndicateView {
 	}
 
 	private void init() {
-		this.init();
 		this.scheduler = Executors.newScheduledThreadPool(1);
 	}
 
