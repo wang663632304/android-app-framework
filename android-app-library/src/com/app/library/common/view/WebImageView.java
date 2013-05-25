@@ -2,17 +2,16 @@ package com.app.library.common.view;
 
 import java.util.HashMap;
 
-import com.app.library.common.manager.RequestListener;
-import com.app.library.common.manager.RequestManager;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.webkit.WebSettings;
 import android.widget.ImageView;
+
+import com.app.library.common.manager.RequestListener;
+import com.app.library.common.manager.RequestManager;
 
 /**
  * ImageView with a network image RequestManager
@@ -95,17 +94,17 @@ public class WebImageView extends ImageView {
 	 * first load image
 	 */
 	private void firstLoad() {
-		this.loadResource(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		this.loadResource();
 	}
 
 	/**
 	 * retry cache when failed first time
 	 */
 	private void retryCache() {
-		this.loadResource(WebSettings.LOAD_CACHE_ONLY);
+		this.loadResource();
 	}
 
-	private void loadResource(int cacheMode) {
+	private void loadResource() {
 		if (TextUtils.isEmpty(imageUrl)) {
 			this.setDefaultImage();
 		} else {
