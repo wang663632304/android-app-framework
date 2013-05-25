@@ -151,7 +151,7 @@ public abstract class AbsTabIndicateView extends LinearLayout implements View.On
 		this.refreshHandler.sendEmptyMessage(0);
 	}
 
-	void refreshIndicateView() {
+	protected void refreshIndicateView() {
 		for (int index = 0; index < viewCount; index++) {// 切换刷新界面
 			final View view = viewList.get(index);
 			if (index == currentIndex) {
