@@ -1,7 +1,5 @@
 package com.app.library.common;
 
-import com.app.library.LibraryConfig;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -36,7 +34,7 @@ public class BaseActivity extends Activity {
 	}
 
 	protected void showDialog(boolean cancel) {
-		showDialog(LibraryConfig.LOADING_TEXT, cancel);
+		showDialog(ResourceUtils.getStringById(BaseActivity.this, "loading_text"), cancel);
 	}
 
 	protected void showDialog(String message, boolean cancel) {

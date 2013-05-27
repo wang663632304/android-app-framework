@@ -37,9 +37,9 @@
     <!-- 粉色 -->
     <color name="magenta">#ff888888</color>
 
-     <!-- 标题背景 -->
+    <!-- 标题背景 -->
     <color name="titlebar">#2181cb</color>
-    
+
     <!-- 布局背景 -->
     <color name="bg">#ffffffff</color>
 
@@ -48,6 +48,9 @@
 
     <!-- 灰色，常用浅色文字颜色 -->
     <color name="content">#ff999999</color>
+
+    <!-- 编辑输入框提示文字 -->
+    <color name="hint">#ffcccccc</color>
 
     <!-- 浅灰，常用list风格分隔线条颜色 -->
     <color name="divider">#e6e6e6</color>

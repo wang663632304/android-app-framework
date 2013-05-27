@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.app.library.LibraryConfig;
 import com.app.library.common.BaseDialog;
 import com.app.library.common.ResourceUtils;
 
@@ -44,7 +43,7 @@ class UpdateDialog extends BaseDialog {
 		pctText = (TextView) layout.findViewById(ResourceUtils.getId("pct_message"));
 		pb = (ProgressBar) layout.findViewById(ResourceUtils.getId("pct_progressbar"));
 
-		msgText.setText(LibraryConfig.DOWNLOADING_TEXT);
+		msgText.setText(ResourceUtils.getStringId("downloading_text"));
 		pb.setMax(100);
 		
 		super.setContentLayout(layout);		

@@ -13,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.app.library.LibraryConfig;
-
 /**
  * Base class for Dialog
  * 
@@ -60,9 +58,9 @@ public class BaseDialog {
 		postiveBtn = (Button) layout.findViewById(ResourceUtils.getId("confirm_button"));
 		negativeBtn = (Button) layout.findViewById(ResourceUtils.getId("cancel_button"));
 
-		titleTextView.setText(LibraryConfig.ALERT_TEXT);
-		postiveBtn.setText(LibraryConfig.CONFIRM_TEXT);
-		negativeBtn.setText(LibraryConfig.CANCEL_TEXT);
+		titleTextView.setText(ResourceUtils.getStringId("alert_text"));
+		postiveBtn.setText(ResourceUtils.getStringId("confirm_text"));
+		negativeBtn.setText(ResourceUtils.getStringId("cancel_text"));
 
 		titleLayout.setVisibility(View.GONE);
 		contentLayout.setVisibility(View.GONE);
@@ -99,7 +97,8 @@ public class BaseDialog {
 	}
 
 	public void setTitle() {
-		this.setTitle(LibraryConfig.ALERT_TEXT);
+		this.showTitleLayout = true;
+		this.titleTextView.setText(ResourceUtils.getStringId("alert_text"));		
 	}
 
 	public void setTitle(CharSequence title) {
@@ -118,7 +117,7 @@ public class BaseDialog {
 	}
 
 	public void setPositiveButton(DialogInterface.OnClickListener onClickListener) {
-		this.setPositiveButton(LibraryConfig.CONFIRM_TEXT, onClickListener);
+		this.setPositiveButton(ResourceUtils.getStringById(context, "confirm_text"), onClickListener);
 	}
 
 	public void setPositiveButton(CharSequence text, DialogInterface.OnClickListener onClickListener) {
@@ -129,7 +128,7 @@ public class BaseDialog {
 	}
 
 	public void setNegativeButton(DialogInterface.OnClickListener onClickListener) {
-		this.setNegativeButton(LibraryConfig.CANCEL_TEXT, onClickListener);
+		this.setNegativeButton(ResourceUtils.getStringById(context, "cancel_text"), onClickListener);
 	}
 
 	public void setNegativeButton(CharSequence text, DialogInterface.OnClickListener onClickListener) {

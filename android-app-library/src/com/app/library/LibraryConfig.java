@@ -12,40 +12,6 @@ import com.app.library.common.ResourceUtils;
  * 
  */
 public final class LibraryConfig {
-	/**
-	 * class中所用“确定”
-	 */
-	public static final String CONFIRM_TEXT = "确 定";
-
-	/**
-	 * class中所用“取 消”
-	 */
-	public static final String CANCEL_TEXT = "取 消";
-
-	/**
-	 * class中所用“提 示”
-	 */
-	public static final String ALERT_TEXT = "提 示";
-
-	/**
-	 * class中所用“正在加载，请稍候...”
-	 */
-	public static final String LOADING_TEXT = "正在加载，请稍候...";
-
-	/**
-	 * class中所用“正在下载，请稍候...”
-	 */
-	public static final String DOWNLOADING_TEXT = "正在下载，请稍候...";
-
-	/**
-	 * class中所用“程序下载失败...”
-	 */
-	public static final String DOWNLOAD_ERR_TEXT = "程序下载失败...";
-
-	/**
-	 * class中所用“网络请求失败，请稍候再试...”
-	 */
-	public static final String NETWORK_ERR_TEXT = "网络请求失败，请稍候再试...";
 
 	/**
 	 * 初始化基本库（建议在Application子类中进行）

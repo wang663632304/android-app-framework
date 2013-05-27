@@ -43,6 +43,24 @@ public class ResourceUtils {
 	}
 
 	/**
+	 * 根据String资源名取String字符串
+	 * 
+	 * @param context
+	 *            Context
+	 * @param stringName
+	 *            String资源名
+	 * @return
+	 */
+	public static String getStringById(Context context, String stringName) {
+		final int stringId = getStringId(stringName);
+		if (stringId != -1) {
+			return context.getString(stringId);
+		} else {
+			return "Error";
+		}
+	}
+
+	/**
 	 * 获取Color资源ID
 	 * 
 	 * @param colorName
