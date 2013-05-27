@@ -1,3 +1,4 @@
-android-app-framwork
+android-app-framework
 ====================
-Android application framwork base on Asynchronous HTTP Library(http://loopj.com/android-async-http/).
+
+A android application framework easy to build APP, base on https://github.com/allthelucky/android-app-http.
