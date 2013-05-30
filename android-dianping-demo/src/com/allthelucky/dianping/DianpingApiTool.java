@@ -10,12 +10,18 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
- * 点评API工具
+ * 大众点评API工具
  */
 public class DianpingApiTool {
-	private final static String appKey = "702504828";
+	/**
+	 * 大众点评应用App Key
+	 */
+	private final static String appKey = "xxxxxxxx";
 
-	private final static String secret = "a6b401f9849743bea43abd06259aca43";
+	/**
+	 * 大众点评App Secret
+	 */
+	private final static String secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
 	/**
 	 * * 请求API
