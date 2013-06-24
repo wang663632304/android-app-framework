@@ -33,6 +33,9 @@ public class DianpingApiTool {
 	 * @return
 	 */
 	public static String requestApi(String apiUrl, Map<String, String> paramMap) {
+		if(paramMap!=null) {
+			paramMap.put("format", "json");
+		}
 		return apiUrl + "?" + getQueryString(appKey, secret, paramMap);
 	}
 	

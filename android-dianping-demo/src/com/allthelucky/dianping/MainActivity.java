@@ -35,7 +35,6 @@ public class MainActivity extends BaseActivity {
 		paramMap.put("has_deal", "1");
 		paramMap.put("keyword", "̩泰国菜");
 		paramMap.put("sort", "7");
-		paramMap.put("format", "json");
 
 		final RequestListener requestListener = new RequestListener() {
 			@Override
