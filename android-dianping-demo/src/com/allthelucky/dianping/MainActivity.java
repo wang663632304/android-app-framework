@@ -45,9 +45,13 @@ public class MainActivity extends BaseActivity {
 			@Override
 			public void onCompleted(byte[] data, int statusCode, String description, int actionId) {
 				dismissDialog();
-				final JSONObject result = StringUtils.bytesToJSONObject(data);
 				final TextView tv = (TextView) findViewById(R.id.hello_text);
-				tv.setText("result:" + result);
+				if (statusCode != RequestListener.OK) {
+					tv.setText("result:" + description);
+				} else {
+					final JSONObject result = StringUtils.bytesToJSONObject(data);
+					tv.setText("result:" + result);
+				}
 			}
 		};
 		RequestManager.getInstance().get(MainActivity.this, DianpingApiTool.requestApi(apiUrl, paramMap),
