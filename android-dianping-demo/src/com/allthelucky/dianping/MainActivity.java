@@ -43,7 +43,9 @@ public class MainActivity extends BaseActivity {
 			}
 
 			@Override
-			public void onCompleted(byte[] data, int statusCode, String description, int actionId) {
+			public void onCompleted(int statusCode, byte[] data, long lastModified, String description, int actionId) {
+				// TODO Auto-generated method stub
+
 				dismissDialog();
 				final TextView tv = (TextView) findViewById(R.id.hello_text);
 				if (statusCode != RequestListener.OK) {
@@ -52,10 +54,10 @@ public class MainActivity extends BaseActivity {
 					final JSONObject result = StringUtils.bytesToJSONObject(data);
 					tv.setText("result:" + result);
 				}
+			
 			}
 		};
-		RequestManager.getInstance().get(MainActivity.this, DianpingApiTool.requestApi(apiUrl, paramMap),
-				requestListener, 0);
+		RequestManager.getInstance().get(MainActivity.this, DianpingApiTool.requestApi(apiUrl, paramMap),requestListener, 0);
 
 	}
 
