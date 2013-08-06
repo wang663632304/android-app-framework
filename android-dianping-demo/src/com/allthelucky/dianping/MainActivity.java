@@ -8,10 +8,10 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.app.library.common.BaseActivity;
-import com.app.library.common.StringUtils;
-import com.app.library.http.RequestListener;
-import com.app.library.http.RequestManager;
+import com.allthelucky.app.common.BaseActivity;
+import com.allthelucky.app.common.StringUtils;
+import com.allthelucky.http.RequestListener;
+import com.allthelucky.http.RequestManager;
 
 public class MainActivity extends BaseActivity {
 
@@ -44,8 +44,6 @@ public class MainActivity extends BaseActivity {
 
 			@Override
 			public void onCompleted(int statusCode, byte[] data, long lastModified, String description, int actionId) {
-				// TODO Auto-generated method stub
-
 				dismissDialog();
 				final TextView tv = (TextView) findViewById(R.id.hello_text);
 				if (statusCode != RequestListener.OK) {

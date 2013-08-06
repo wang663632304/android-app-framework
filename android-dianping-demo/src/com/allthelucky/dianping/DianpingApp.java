@@ -1,8 +1,8 @@
 package com.allthelucky.dianping;
 
-import com.app.library.LibraryConfig;
-
 import android.app.Application;
+
+import com.allthelucky.app.LibraryConfig;
 
 public class DianpingApp  extends Application{
 	
