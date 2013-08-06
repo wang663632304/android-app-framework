@@ -1,4 +1,4 @@
-package com.app.library.common;
+package com.allthelucky.app.common;
 
 import android.app.Dialog;
 import android.content.Context;

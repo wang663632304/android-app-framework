@@ -1,4 +1,4 @@
-package com.app.library.common.manager;
+package com.allthelucky.app.common.manager;
 
 /**
  * UpdateDialog下载监听接口

@@ -1,4 +1,4 @@
-package com.app.library.common.manager;
+package com.allthelucky.app.common.manager;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,8 +16,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.app.library.common.BaseDialog;
-import com.app.library.common.ResourceUtils;
+import com.allthelucky.app.common.BaseDialog;
+import com.allthelucky.app.common.ResourceUtils;
 
 class UpdateDialog extends BaseDialog {
 	private static final String FILE_DIR = "/temp";

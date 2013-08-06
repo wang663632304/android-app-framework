@@ -1,9 +1,9 @@
-package com.app.library;
+package com.allthelucky.app;
 
 import android.content.Context;
 
-import com.app.library.common.DebugLogger;
-import com.app.library.common.ResourceUtils;
+import com.allthelucky.app.common.DebugLogger;
+import com.allthelucky.app.common.ResourceUtils;
 
 /**
  * 基本库配置工具类

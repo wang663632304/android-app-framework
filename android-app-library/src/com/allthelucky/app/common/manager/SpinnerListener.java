@@ -1,4 +1,4 @@
-package com.app.library.common.manager;
+package com.allthelucky.app.common.manager;
 
 /**
  * SpinnerDialog选项监听

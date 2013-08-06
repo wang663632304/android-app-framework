@@ -1,6 +1,6 @@
-package com.app.library.common.manager;
+package com.allthelucky.app.common.manager;
 
-import com.app.library.common.ResourceUtils;
+import com.allthelucky.app.common.ResourceUtils;
 
 import android.app.Activity;
 import android.view.View;

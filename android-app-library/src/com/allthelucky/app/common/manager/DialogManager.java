@@ -1,4 +1,4 @@
-package com.app.library.common.manager;
+package com.allthelucky.app.common.manager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
 import android.view.Gravity;
 
-import com.app.library.common.BaseDialog;
+import com.allthelucky.app.common.BaseDialog;
 
 /**
  * 对话框工具类

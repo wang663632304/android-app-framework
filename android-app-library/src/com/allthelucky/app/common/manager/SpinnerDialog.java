@@ -1,4 +1,4 @@
-package com.app.library.common.manager;
+package com.allthelucky.app.common.manager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,8 +14,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.app.library.common.BaseDialog;
-import com.app.library.common.ResourceUtils;
+import com.allthelucky.app.common.BaseDialog;
+import com.allthelucky.app.common.ResourceUtils;
 
 class SpinnerDialog extends BaseDialog {
 	private ListView listView;

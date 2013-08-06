@@ -1,4 +1,4 @@
-package com.app.library.common;
+package com.allthelucky.app.common;
 
 import java.lang.reflect.Field;
 
